@@ -1,0 +1,204 @@
+---
+import { event } from "../data/event";
+
+const BRAND = "León AI";
+const GROUP_URL = "https://www.meetup.com/leon-ai/";
+const VIEW_BOX = "-130 -130 260 260";
+const RAY_COUNT = 16;
+
+const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
+const faviconHref = `${base}/favicon.svg`;
+
+const raysMarkup = Array.from({ length: RAY_COUNT }, (_, i) => {
+  const a = (i / RAY_COUNT) * Math.PI * 2;
+  const long = i % 2 === 0;
+  const r1 = 66;
+  const r2 = long ? 104 : 91;
+  const c = long ? 12 : 9;
+  const x1 = Math.sin(a) * r1;
+  const y1 = -Math.cos(a) * r1;
+  const x2 = Math.sin(a) * r2;
+  const y2 = -Math.cos(a) * r2;
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--amber)" stroke-width="9" stroke-linecap="round"/><circle cx="${x2}" cy="${y2}" r="${c}" fill="var(--amber)"/>`;
+}).join("");
+
+const faceMarkup = `<g transform="translate(0,4) scale(.6)"><path d="M -95 -60 Q 0 -125 95 -60 L 78 70 Q 0 135 -78 70 Z" fill="var(--sun)"/><circle cx="-40" cy="-15" r="15" fill="var(--ink)"/><circle cx="40" cy="-15" r="15" fill="var(--ink)"/><path d="M -26 30 L 26 30 L 0 58 Z" fill="var(--ink)"/></g>`;
+
+const LOCALE = "es-ES";
+const TIME_ZONE = "Europe/Madrid";
+const when = new Date(event.date);
+const dateParts = new Intl.DateTimeFormat(LOCALE, {
+  timeZone: TIME_ZONE,
+  weekday: "long",
+  day: "numeric",
+  month: "short",
+}).formatToParts(when);
+const part = (type: string) => dateParts.find((p) => p.type === type)?.value ?? "";
+const weekday = part("weekday");
+const weekdayLabel = weekday.charAt(0).toUpperCase() + weekday.slice(1);
+const month = part("month").replace(/\.$/, "");
+const timeLabel = new Intl.DateTimeFormat(LOCALE, {
+  timeZone: TIME_ZONE,
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+}).format(when);
+const dateLabel = `${weekdayLabel} ${part("day")} ${month} · ${timeLabel}`;
+const editionLabel = `${BRAND} #${event.number}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{BRAND}</title>
+    <meta
+      name="description"
+      content="Comunidad de IA en León. Una vez al mes elegimos qué construir y lo hacemos en directo con IA agéntica."
+    />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <svg class="rays" viewBox={VIEW_BOX} aria-hidden="true" set:html={raysMarkup} />
+      <svg class="face" viewBox={VIEW_BOX} aria-hidden="true" set:html={faceMarkup} />
+      <div class="wrap">
+        <div class="eyebrow">Comunidad de IA · León</div>
+        <h1>{BRAND}<span class="dot">.</span></h1>
+        <p class="lede">Una vez al mes elegimos qué construir y lo hacemos en directo con IA agéntica, en la pantalla grande.</p>
+        <a class="cta" href={GROUP_URL}>Apúntate en Meetup →</a>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <h2>Próxima edición</h2>
+        <div class="event">
+          <div class="ticket">
+            <div class="ed">{editionLabel}</div>
+            <time class="date" datetime={event.date}>{dateLabel}</time>
+            <div class="place">{event.venue}<br />{event.address}</div>
+            <div>Gratis. Plazas limitadas.</div>
+            <a class="cta" href={event.meetupUrl}>Reserva tu plaza →</a>
+          </div>
+          <ol class="agenda">
+            {
+              event.agenda.map((item) => (
+                <li>
+                  <time>{item.time}</time>
+                  <span>{item.label}</span>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>La sala decide</h2>
+        <p class="who">
+          Propones, preguntas, corriges y votas. La teoría sale mientras construimos: <strong
+            >contexto, especificaciones, verificación y cómo delegar en agentes</strong
+          >. Lo que hacemos es para la propia comunidad y crece edición tras edición.
+        </p>
+        <p class="who">
+          Da igual si vienes de desarrollo, diseño, marketing o negocio, si estudias o si no has programado en tu vida. Trae
+          portátil si quieres seguirlo en paralelo.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="host">
+          <svg class="mark" viewBox={VIEW_BOX} aria-hidden="true" set:html={raysMarkup + faceMarkup} />
+          <p>
+            <b>Organiza Juan Andrés Núñez</b>, Senior Software Engineer especializado en IA agéntica. Más de quince años
+            construyendo para la Web y enseñando a hacerlo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <a href={GROUP_URL}>Meetup</a>
+        <a href="https://www.linkedin.com/in/juanwmedia">LinkedIn</a>
+        <a href="https://wmedia.es">wmedia.es</a>
+        <span>{BRAND} · León, España</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --ink: #111318;
+    --ink-2: #1b1e25;
+    --line: #2a2e37;
+    --text: #f3f1ea;
+    --muted: #a3a6ad;
+    --amber: #f59e0b;
+    --sun: #fcd34d;
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    color-scheme: dark;
+  }
+  body { background: var(--ink); color: var(--text); font-family: var(--body); font-size: 17px; line-height: 1.6; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; }
+
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero .wrap { position: relative; padding-block: 72px 64px; display: grid; gap: 28px; }
+  .rays, .face { position: absolute; right: -180px; top: 50%; width: 640px; height: 640px; translate: 0 -50%; opacity: .9; }
+  @media (prefers-reduced-motion: no-preference) { .rays { animation: spin 120s linear infinite; } }
+  @keyframes spin { to { rotate: 360deg; } }
+  .eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); }
+  h1 { font-family: var(--display); font-weight: 900; font-size: clamp(56px, 11vw, 132px); line-height: .9; letter-spacing: -.03em; margin: 0; text-wrap: balance; position: relative; }
+  h1 .dot { color: var(--amber); }
+  .lede { max-width: 34ch; font-size: clamp(19px, 2.4vw, 24px); line-height: 1.4; margin: 0; position: relative; }
+  .cta { display: inline-flex; align-items: center; gap: 10px; background: var(--sun); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 18px; padding: 14px 22px; border-radius: 999px; text-decoration: none; width: fit-content; position: relative; }
+  .cta:hover { background: var(--amber); }
+
+  section { border-bottom: 1px solid var(--line); }
+  section .wrap { padding-block: 56px; display: grid; gap: 24px; }
+  h2 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4vw, 40px); line-height: 1.05; margin: 0; letter-spacing: -.01em; }
+
+  .event { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; }
+  .ticket { background: var(--ink-2); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: grid; gap: 14px; min-width: 0; }
+  .ticket .ed { font-family: var(--mono); color: var(--amber); font-size: 14px; }
+  .ticket .date { font-family: var(--display); font-weight: 900; font-size: clamp(34px, 5vw, 48px); line-height: 1; }
+  .ticket .place { color: var(--muted); }
+  .agenda { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; min-width: 0; }
+  .agenda li { display: grid; grid-template-columns: 72px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .agenda li:first-child { border-top: 0; }
+  .agenda time { font-family: var(--mono); color: var(--sun); font-variant-numeric: tabular-nums; }
+
+  .who { max-width: 62ch; margin: 0; color: var(--muted); }
+  .who strong { color: var(--text); font-weight: 500; }
+  .host { display: grid; grid-template-columns: 64px 1fr; gap: 18px; align-items: start; }
+  .host .mark { width: 64px; height: 64px; }
+  .host p { margin: 0; max-width: 60ch; color: var(--muted); }
+  .host b { color: var(--text); font-weight: 500; }
+
+  footer .wrap { padding-block: 32px 48px; display: flex; flex-wrap: wrap; gap: 12px 28px; color: var(--muted); font-size: 15px; }
+  footer a { text-decoration-color: var(--amber); text-underline-offset: 4px; }
+
+  @media (max-width: 760px) {
+    .event { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 1000px) {
+    .hero .wrap { padding-block-start: 200px; }
+    .rays, .face { top: 24px; right: max(16px, env(safe-area-inset-right, 0px)); width: 160px; height: 160px; translate: none; opacity: 1; }
+  }
+</style>

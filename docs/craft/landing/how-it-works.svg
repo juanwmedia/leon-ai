@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 300" role="img" aria-label="One data file and the brand assets feed a single Astro page; pushing to main builds it with the Astro action and publishes static HTML to GitHub Pages under /leon-ai." font-family="system-ui, sans-serif" font-size="12" fill="none" stroke="currentColor" color="currentColor">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="currentColor" stroke="none"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="24" fill="currentColor" stroke="none" font-weight="600">Repo (local)</text>
+  <rect x="10" y="34" width="470" height="250" rx="8" stroke-dasharray="4 4" opacity="0.5"/>
+
+  <rect x="30" y="60" width="170" height="54" rx="6"/>
+  <text x="115" y="83" text-anchor="middle" fill="currentColor" stroke="none">src/data/event.ts</text>
+  <text x="115" y="100" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">new · edition, date, venue</text>
+
+  <rect x="30" y="200" width="170" height="54" rx="6"/>
+  <text x="115" y="223" text-anchor="middle" fill="currentColor" stroke="none">public/brand/*.svg</text>
+  <text x="115" y="240" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">new · copied logos</text>
+
+  <rect x="290" y="130" width="170" height="54" rx="6" stroke="#F59E0B" stroke-width="2"/>
+  <text x="375" y="153" text-anchor="middle" fill="currentColor" stroke="none">src/pages/index.astro</text>
+  <text x="375" y="170" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">new · the one landing</text>
+
+  <path d="M200 87 C 250 87, 240 150, 288 150" marker-end="url(#arrow)"/>
+  <text x="246" y="100" fill="currentColor" stroke="none">imports</text>
+  <path d="M200 227 C 250 227, 240 166, 288 166" marker-end="url(#arrow)"/>
+  <text x="246" y="222" fill="currentColor" stroke="none">src via base</text>
+
+  <text x="520" y="24" fill="currentColor" stroke="none" font-weight="600">GitHub</text>
+  <rect x="510" y="34" width="340" height="250" rx="8" stroke-dasharray="4 4" opacity="0.5"/>
+
+  <line x1="460" y1="157" x2="528" y2="157" marker-end="url(#arrow)"/>
+  <text x="472" y="148" fill="currentColor" stroke="none">push main</text>
+
+  <rect x="530" y="130" width="140" height="54" rx="6"/>
+  <text x="600" y="153" text-anchor="middle" fill="currentColor" stroke="none">withastro/action</text>
+  <text x="600" y="170" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">astro build → dist/</text>
+
+  <line x1="670" y1="157" x2="698" y2="157" marker-end="url(#arrow)"/>
+
+  <rect x="700" y="120" width="140" height="74" rx="6"/>
+  <text x="770" y="145" text-anchor="middle" fill="currentColor" stroke="none">GitHub Pages</text>
+  <text x="770" y="163" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">user.github.io</text>
+  <text x="770" y="180" text-anchor="middle" fill="currentColor" stroke="none" opacity="0.7">/leon-ai/</text>
+
+  <line x1="770" y1="194" x2="770" y2="244" marker-end="url(#arrow)"/>
+  <text x="780" y="224" fill="currentColor" stroke="none">static HTML</text>
+  <text x="770" y="264" text-anchor="middle" fill="currentColor" stroke="none">Visitor → Meetup to sign up</text>
+</svg>

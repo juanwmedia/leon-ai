@@ -1,0 +1,123 @@
+<title>León AI Daylight</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: light, poster-like. A full-width sun-yellow hero with the lion face big at the right; white body with a timeline agenda. */
+:root {
+  --paper: #ffffff;
+  --sun: #FCD34D;
+  --amber: #F59E0B;
+  --ink: #111318;
+  --muted: #555963;
+  --line: #e7e5df;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  color-scheme: light;
+}
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.hero { background: var(--sun); }
+.hero .wrap { padding-block: 56px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: center; }
+.hero .copy { display: grid; gap: 24px; min-width: 0; }
+.lockup { font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+h1 { font-family: var(--display); font-weight: 900; font-size: clamp(44px, 7.5vw, 92px); line-height: .95; letter-spacing: -.03em; margin: 0; text-wrap: balance; }
+h1 em { font-style: normal; background: var(--ink); color: var(--sun); padding: 0 .12em; }
+.lede { margin: 0; max-width: 36ch; font-size: 20px; line-height: 1.45; }
+.cta { display: inline-flex; gap: 10px; background: var(--ink); color: var(--sun); font-family: var(--display); font-weight: 800; font-size: 18px; padding: 14px 22px; border-radius: 12px; text-decoration: none; width: fit-content; }
+.cta:hover { color: #fff; }
+.lion { width: 100%; max-width: 380px; justify-self: end; }
+@media (prefers-reduced-motion: no-preference) {
+  .lion .ray { transform-origin: 0 0; animation: pulse 3.2s ease-in-out infinite; }
+}
+@keyframes pulse { 50% { transform: scale(1.04); } }
+
+section .wrap { padding-block: 56px; display: grid; gap: 24px; border-bottom: 1px solid var(--line); }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4vw, 40px); margin: 0; line-height: 1.05; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 18px; }
+.meta b { font-family: var(--display); font-weight: 800; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.timeline li { border-top: 4px solid var(--ink); padding-top: 14px; display: grid; gap: 6px; min-width: 0; }
+.timeline li:nth-child(2) { border-color: var(--amber); }
+.timeline time { font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+.timeline span { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.15; }
+p.body { margin: 0; max-width: 62ch; color: var(--muted); }
+p.body strong { color: var(--ink); font-weight: 500; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags span { border: 1px solid var(--ink); border-radius: 999px; padding: 4px 12px; font-size: 15px; }
+
+footer .wrap { padding-block: 32px 48px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px; color: var(--muted); }
+footer a { color: var(--ink); text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .lion { justify-self: start; max-width: 200px; order: -1; }
+  .timeline { grid-template-columns: 1fr; }
+}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="copy">
+      <div class="lockup">León AI · Comunidad de IA en León</div>
+      <h1>Construimos con IA, <em>en directo</em>.</h1>
+      <p class="lede">Una vez al mes la sala elige qué construir y lo hacemos con IA agéntica en la pantalla grande.</p>
+      <a class="cta" href="https://www.meetup.com/leon-ai/">Apúntate en Meetup →</a>
+    </div>
+    <svg class="lion" id="lion" viewBox="-130 -130 260 260" role="img" aria-label="León AI"></svg>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>León AI #1</h2>
+    <div class="meta"><span><b>Jueves 19 nov</b> · 18:00</span><span>Edificio Rojo, CEBT · Calle Santos Ovejero, 1</span><span>Gratis · plazas limitadas</span></div>
+    <ol class="timeline">
+      <li><time>18:00</time><span>Decidimos qué construir</span></li>
+      <li><time>18:15</time><span>Construimos en directo y enseñamos el resultado</span></li>
+      <li><time>19:30</time><span>Networking</span></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Abierto a cualquiera</h2>
+    <p class="body">Propones, preguntas, corriges y votas. La teoría aparece mientras construimos, centrada en lo que no caduca: <strong>contexto, especificaciones, verificación y cómo delegar en agentes</strong>.</p>
+    <div class="tags"><span>Desarrollo</span><span>Diseño</span><span>Marketing</span><span>Negocio</span><span>Estudiantes</span><span>Nunca he programado</span></div>
+    <p class="body">Organiza <strong>Juan Andrés Núñez</strong>, Senior Software Engineer especializado en IA agéntica.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="https://www.meetup.com/leon-ai/">Meetup</a>
+    <a href="https://www.linkedin.com/in/juanwmedia">LinkedIn</a>
+    <a href="https://wmedia.es">wmedia.es</a>
+    <span>León, España</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const svg = document.getElementById("lion"), NS = "http://www.w3.org/2000/svg";
+  const make = (parent, tag, attrs) => { const el = document.createElementNS(NS, tag); for (const k in attrs) el.setAttribute(k, attrs[k]); parent.appendChild(el); return el; };
+  make(svg, "rect", { x: -130, y: -130, width: 260, height: 260, rx: 64, fill: "#111318" });
+  for (let i = 0; i < 16; i++) {
+    const a = (i / 16) * Math.PI * 2, long = i % 2 === 0, r2 = long ? 104 : 91;
+    const g = make(svg, "g", { class: "ray" });
+    g.style.animationDelay = (i * 0.1) + "s";
+    make(g, "line", { x1: Math.sin(a) * 66, y1: -Math.cos(a) * 66, x2: Math.sin(a) * r2, y2: -Math.cos(a) * r2, stroke: "#F59E0B", "stroke-width": 9, "stroke-linecap": "round" });
+    make(g, "circle", { cx: Math.sin(a) * r2, cy: -Math.cos(a) * r2, r: long ? 12 : 9, fill: "#F59E0B" });
+  }
+  const face = make(svg, "g", { transform: "translate(0,4) scale(.6)" });
+  make(face, "path", { d: "M -95 -60 Q 0 -125 95 -60 L 78 70 Q 0 135 -78 70 Z", fill: "#FCD34D" });
+  make(face, "circle", { cx: -40, cy: -15, r: 15, fill: "#111318" });
+  make(face, "circle", { cx: 40, cy: -15, r: 15, fill: "#111318" });
+  make(face, "path", { d: "M -26 30 L 26 30 L 0 58 Z", fill: "#111318" });
+})();
+</script>
